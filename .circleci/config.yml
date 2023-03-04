@@ -36,8 +36,8 @@ jobs:
             trcli -y \
              -h https://$TESTRAIL_INSTANCE.testrail.io/ \
              --project "PROJECT_NAME" \
-             -u $USER \
-             -p $PASS \
+             -u $USER_EMAIL \
+             -p $PASSWORD \
              parse_junit \
              --title "Automated Tests from CircleCI workflow" \
              -f "./target/TEST-junit-jupiter.xml"
