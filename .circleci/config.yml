@@ -35,7 +35,7 @@ jobs:
             pip install trcli
             trcli -y \
              -h https://$TESTRAIL_INSTANCE.testrail.io/ \
-             --project "PROJECT_NAME" \
+             --project "TestRail CLI code-first" \
              -u $USER_EMAIL \
              -p $PASSWORD \
              parse_junit \
