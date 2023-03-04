@@ -8,7 +8,6 @@ jobs:
   build-and-test:
     # These next lines define a Docker executor: https://circleci.com/docs/2.0/executor-types/
     # You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # Be sure to update the Docker image tag below to openjdk version of your application.
     # A list of available CircleCI Docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/openjdk
     working_directory: ~/automation-framework-integration # directory where steps will run
     docker:
@@ -18,32 +17,22 @@ jobs:
     steps:
       # Checkout the code as the first step.
       - checkout
-      # install maven
+      # install dependencies for running the tests
       - run:
-          name: install maven
+          name: install dependencies for running the tests
           command: |
             sudo apt update
             sudo apt install maven
-      # Make the selenium driver executable before running the selenium tests
-      - run:
-          name: make linux driver executable
-          command: chmod 777 drivers/linux/chromedriver
-      # Install TR CLI
-      - run:
-          name: install trcli
-          command: pip install trcli
-      # Install test project
-      - run:
-          name: Install the test project
-          command: mvn clean compile
+            chmod 777 drivers/linux/chromedriver
       # Run the tests
       - run:
           name: Run the tests
           command: mvn clean compile test
-      # Upload test results to Testrail
+      # Install TR CLI and Upload test results to Testrail
       - run:
-          name: Upload the test results to Testrail
+          name: Install TR CLI and upload the test results to Testrail
           command: |
+            pip install trcli
             trcli -y \
              -h https://$TESTRAIL_INSTANCE.testrail.io/ \
              --project "PROJECT_NAME" \
@@ -52,7 +41,6 @@ jobs:
              parse_junit \
              --title "Automated Tests from CircleCI workflow" \
              -f "./target/TEST-junit-jupiter.xml"
-
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
