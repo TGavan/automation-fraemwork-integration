@@ -26,7 +26,7 @@ jobs:
             chmod 777 drivers/linux/chromedriver
       # Run the tests
       - run:
-          name: Run the tests
+          name: Execute the automation tests
           command: mvn clean compile test
       # Install TR CLI and Upload test results to Testrail
       - run:
