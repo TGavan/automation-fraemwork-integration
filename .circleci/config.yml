@@ -38,17 +38,24 @@ jobs:
           paths:
             - TEST-junit-jupiter.xml
   parse-results:
+    working_directory: ~/automation-framework-integration
     docker:
       - image: cimg/python:3.11-browsers
     steps:
      - run:
-          name: test aoutput 
+          name: test output 
           command: |
             pwd
+            ls
             mkdir -p temp
+            pwd
+            ls
+            cd temp
+            pwd
+            ls
      - attach_workspace:
           # Must be absolute path or relative path from working_directory
-          at: /temp
+          at: /automation-framework-integration
      - run:
           name: Install TR CLI and upload the test results to Testrail
           command: |
