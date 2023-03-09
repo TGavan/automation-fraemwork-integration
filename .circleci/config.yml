@@ -42,6 +42,8 @@ jobs:
              --title "Automated Tests from CircleCI workflow" \
              -f "./target/TEST-junit-jupiter.xml"
   parse-results:
+    requires:
+     - build-and-test
     docker:
       - image: cimg/python:3.11-browsers
     steps:
