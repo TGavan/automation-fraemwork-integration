@@ -41,9 +41,14 @@ jobs:
     docker:
       - image: cimg/python:3.11-browsers
     steps:
+     - run:
+          name: test aoutput 
+          command: |
+            pwd
+            mkdir -p temp
      - attach_workspace:
           # Must be absolute path or relative path from working_directory
-          at: /automation-framework-integration/target
+          at: /temp
      - run:
           name: Install TR CLI and upload the test results to Testrail
           command: |
