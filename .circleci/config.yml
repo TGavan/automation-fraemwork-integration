@@ -43,10 +43,11 @@ jobs:
     steps:
      - attach_workspace:
           # Must be absolute path or relative path from working_directory
-          at: /tmp/workspace
+          at: /automation-framework-integration/target
      - run:
           name: Install TR CLI and upload the test results to Testrail
           command: |
+            pwd
             pip install trcli
             trcli -y \
              -h https://$TESTRAIL_INSTANCE.testrail.io/ \
@@ -55,7 +56,7 @@ jobs:
              -p $PASSWORD \
              parse_junit \
              --title "Automated Tests from CircleCI workflow" \
-             -f "/tmp/workspace/target/TEST-junit-jupiter.xml"
+             -f "/automation-framework-integration/target/TEST-junit-jupiter.xml"
     
 
 # Invoke jobs via workflows
