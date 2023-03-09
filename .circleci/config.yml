@@ -31,6 +31,9 @@ jobs:
           command: |
             chmod 777 drivers/linux/chromedriver
             pwd
+            mvn --version
+            google-chrome --version
+
       # Run the tests
       - run:
           name: Run the tests
