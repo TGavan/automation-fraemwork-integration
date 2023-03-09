@@ -45,7 +45,7 @@ jobs:
     docker:
       - image: cimg/python:3.11-browsers
     steps:
-      - run:
+     - run:
           name: Install TR CLI and upload the test results to Testrail
           command: |
             pip install trcli
@@ -66,4 +66,4 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
-      - parese-results
+      - parse-results
