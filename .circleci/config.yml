@@ -30,8 +30,6 @@ jobs:
       - run:
           name: install dependencies for running the tests
           command: |
-            sudo apt update
-            sudo apt install maven
             chmod 777 drivers/linux/chromedriver
             pwd
       # Run the tests
@@ -47,7 +45,6 @@ jobs:
           paths:
             - TEST-junit-jupiter.xml
   parse-results:
-    executor: my-executor
     docker:
       - image: cimg/python:3.11-browsers
     steps:
