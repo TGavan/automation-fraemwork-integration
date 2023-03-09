@@ -29,22 +29,20 @@ jobs:
           name: Run the tests
           command: mvn clean compile test
       # Install TR CLI and Upload test results to Testrail
-      - run:
-          name: Install TR CLI and upload the test results to Testrail
-          command: |
-            pip install trcli
-            trcli -y \
-             -h https://$TESTRAIL_INSTANCE.testrail.io/ \
-             --project "TestRail CLI code-first" \
-             -u $USER_EMAIL \
-             -p $PASSWORD \
-             parse_junit \
-             --title "Automated Tests from CircleCI workflow" \
-             -f "./target/TEST-junit-jupiter.xml"
+      - persist_to_workspace:
+          # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is
+          # taken to be the root directory of the workspace.
+          root: workspace
+          # Must be relative path from root
+          paths:
+            - target/TEST-junit-jupiter.xml
   parse-results:
     docker:
       - image: cimg/python:3.11-browsers
     steps:
+     - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: /tmp/workspace
      - run:
           name: Install TR CLI and upload the test results to Testrail
           command: |
@@ -56,7 +54,7 @@ jobs:
              -p $PASSWORD \
              parse_junit \
              --title "Automated Tests from CircleCI workflow" \
-             -f "./target/TEST-junit-jupiter.xml"
+             -f "/tmp/workspace/target/TEST-junit-jupiter.xml"
     
 
 # Invoke jobs via workflows
