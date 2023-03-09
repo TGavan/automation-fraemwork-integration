@@ -20,7 +20,7 @@ jobs:
     # A list of available CircleCI Docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/openjdk
      # directory where steps will run
     docker:
-      - image: cimg/openjdk:1.14-browsers
+      - image: cimg/openjdk:15.0-browsers
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
