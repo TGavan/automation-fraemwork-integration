@@ -47,11 +47,7 @@ jobs:
           command: |
             pwd
             ls
-            mkdir -p temp
-            pwd
-            ls
-            cd temp
-            pwd
+            cd automation-framework-integration
             ls
      - attach_workspace:
           # Must be absolute path or relative path from working_directory
