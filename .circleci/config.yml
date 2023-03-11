@@ -9,36 +9,27 @@ executors:
        - image: cimg/openjdk:15.0-browsers
        - image: cimg/python:3.11-browsers
 working_directory: ~/automation-framework-integration
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
   build-and-test:
-   
     # These next lines define a Docker executor: https://circleci.com/docs/2.0/executor-types/
     # You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # A list of available CircleCI Docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/openjdk
-     # directory where steps will run
     docker:
       - image: cimg/openjdk:15.0-browsers
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
+      - browser-tools/install-browser-tools:
+            chrome-version: 109.0.5414.74
       # Checkout the code as the first step.
       - checkout
-      # install dependencies for running the tests
+      # Build and run the tests
       - run:
-          name: install dependencies for running the tests
+          name: Build and run the tests
           command: |
             chmod 777 drivers/linux/chromedriver
-            pwd
-            mvn --version
-            google-chrome --version
-      # Run the tests
-      - run:
-          name: Run the tests
-          command: mvn clean compile test
-      # Install TR CLI and Upload test results to Testrail
+            mvn clean compile test
       - persist_to_workspace:
           # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is
           # taken to be the root directory of the workspace.
@@ -50,11 +41,6 @@ jobs:
     docker:
       - image: cimg/python:3.11-browsers
     steps:
-     - run:
-          name: test output 
-          command: |
-            pwd
-            ls
      - attach_workspace:
           # Must be absolute path or relative path from working_directory
           at: ./automation-framework-integration
