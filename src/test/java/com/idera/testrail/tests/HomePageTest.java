@@ -70,4 +70,9 @@ class HomePageTest {
         WebElement demoLinkElement = driver.findElement(By.cssSelector("a.btn.btn-medium.btn-outline-white"));
         assertTrue(demoLinkElement.isDisplayed());
     }
+
+    @Test
+    void verifyTheSumOfTwoIntegers() {
+        assertEquals(5, 1 + 2, "1 + 2 should equal 3");
+    }
 }
