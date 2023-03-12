@@ -37,7 +37,7 @@ jobs:
           # Must be relative path from root
           paths:
             - TEST-junit-jupiter.xml
-  parse-results:
+  install-trcli-and-parse-results:
     docker:
       - image: cimg/python:3.11-browsers
     steps:
@@ -62,6 +62,6 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
-      - parse-results:
+      - install-trcli-and-parse-results:
          requires:
             - build-and-test
