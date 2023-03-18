@@ -19,10 +19,12 @@ jobs:
           command: |
             chmod 777 drivers/linux/chromedriver
             mvn clean compile test
+            pwd
+            ls
       - persist_to_workspace:
-          root: target
+          root: ./
           paths:
-            - TEST-junit-jupiter.xml
+            - target/TEST-junit-jupiter.xml
   install-trcli-and-parse-results:
     docker:
       - image: cimg/python:3.11
