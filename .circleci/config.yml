@@ -34,6 +34,8 @@ jobs:
      - run:
           name: Install TR CLI and upload the test results to Testrail
           command: |
+            pwd
+            ls
             pip install trcli
             trcli -y \
              -h https://testrail101.testrail.io/ \
@@ -42,7 +44,7 @@ jobs:
              -p $PASSWORD \
              parse_junit \
              --title "Automated Tests from CircleCI workflow" \
-             -f "./automation-framework-integration/TEST-junit-jupiter.xml"
+             -f "./automation-framework-integration/target/TEST-junit-jupiter.xml"
 # Invoke jobs via workflows
 workflows:
   sample: # This is the name of the workflow, feel free to change it to better match your workflow.
