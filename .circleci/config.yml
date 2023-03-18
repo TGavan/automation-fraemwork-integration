@@ -19,8 +19,6 @@ jobs:
           command: |
             chmod 777 drivers/linux/chromedriver
             mvn clean compile test
-            pwd
-            ls
       - persist_to_workspace:
           root: ./
           paths:
@@ -34,8 +32,6 @@ jobs:
      - run:
           name: Install TR CLI and upload the test results to Testrail
           command: |
-            pwd
-            ls
             pip install trcli
             trcli -y \
              -h https://testrail101.testrail.io/ \
