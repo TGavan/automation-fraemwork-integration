@@ -3,9 +3,9 @@
 ## Pre-requisites for running the tests in the project
 
 - Java must be installed on your system (JDK8 or higher)
-- Maven must be installed on your system
-- Python3 must be installed on your system
-- Chrome browser must be installed on the system for running the tests (109 or higher)
+- Maven must be installed on your system.
+- Python3 must be installed on your system.
+- Chrome browser must be installed on the system for running the tests . Make sure version of chromedriver placed in 'drivers' folder should match the version of locally installed Chrome. 
 
 ## How to parse the test results to testrail without using any CI/CD tool
 

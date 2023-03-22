@@ -7,17 +7,16 @@ working_directory: ~/automation-framework-integration
 jobs:
   build-and-test:
     docker:
-      - image: cimg/openjdk:15.0-browsers
+      - image: cimg/openjdk:15.0
     steps:
       - browser-tools/install-browser-tools:
-            chrome-version: 109.0.5414.74
+          chrome-version: 109.0.5414.74
       # Checkout the code as the first step.
       - checkout
       # Build and run the tests
       - run:
           name: Build and run the tests
           command: |
-            chmod 777 drivers/linux/chromedriver
             mvn clean compile test
       - persist_to_workspace:
           root: ./
@@ -27,9 +26,9 @@ jobs:
     docker:
       - image: cimg/python:3.11
     steps:
-     - attach_workspace:
+      - attach_workspace:
           at: ./automation-framework-integration
-     - run:
+      - run:
           name: Install TR CLI and upload the test results to Testrail
           command: |
             pip install trcli
@@ -48,5 +47,5 @@ workflows:
     jobs:
       - build-and-test
       - install-trcli-and-parse-results:
-         requires:
+          requires:
             - build-and-test

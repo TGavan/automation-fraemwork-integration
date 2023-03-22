@@ -1,5 +1,5 @@
-host:
-project:
-username:
-password:
-title:
+host: https://INSTANCE-NAME.testrail.io
+project: PROJECT NAME
+username: USERNAME
+password: PASSWORD
+title: JUnit5 Automated Test Run
