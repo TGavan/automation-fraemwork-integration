@@ -40,7 +40,7 @@ jobs:
              -p $PASSWORD \
              parse_junit \
              --title "Automated Tests from CircleCI workflow" \
-             --run-description ${{ github.server_url }}/${{ github.repository }}
+             --run-description $CIRCLE_BUILD_URL
              /actions/runs/${{ github.run_id }}
              -f "./automation-framework-integration/target/TEST-junit-jupiter.xml"
 # Invoke jobs via workflows
