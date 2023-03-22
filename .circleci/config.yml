@@ -41,7 +41,6 @@ jobs:
              parse_junit \
              --title "Automated Tests from CircleCI workflow" \
              --run-description $CIRCLE_BUILD_URL
-             /actions/runs/${{ github.run_id }}
              -f "./automation-framework-integration/target/TEST-junit-jupiter.xml"
 # Invoke jobs via workflows
 workflows:
