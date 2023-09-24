@@ -1,5 +1,3 @@
-# Java Gradle CircleCI 2.0 configuration file
-# See: https://circleci.com/docs/language-java/
 # Use the latest 2.1 version of CircleCI pipeline process engine.
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
@@ -35,7 +33,7 @@ jobs:
           command: |
             pip install trcli
             trcli -y \
-             -h https://testrail101.testrail.io/ \
+             -h https://INSTANCE.testrail.io/ \
              --project "CircleCI Integration" \
              -u testrailuser1@gurock.io \
              -p Test1234 \
