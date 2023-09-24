@@ -35,10 +35,10 @@ jobs:
           command: |
             pip install trcli
             trcli -y \
-             -h https://INSTANCE.testrail.io/ \
-             --project "PROJECT NAME" \
-             -u USER_EMAIL \
-             -p PASSWORD \
+             -h https://testrail101.testrail.io/ \
+             --project "CircleCI Integration" \
+             -u testrailuser1@gurock.io \
+             -p Test1234 \
              parse_junit \
              --title "JUnit5 Selenium Automated Test Run" \
              --run-description $CIRCLE_BUILD_URL \
