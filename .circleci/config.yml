@@ -22,7 +22,7 @@ jobs:
           root: ./
           paths:
             - target/TEST-junit-jupiter.xml
-  install-trcli-and-parse-results:
+  install-trcli-and-upload-results:
     docker:
       - image: cimg/python:3.11
     steps:
@@ -33,7 +33,7 @@ jobs:
           command: |
             pip install trcli
             trcli -y \
-             -h https://INSTANCE.testrail.io/ \
+             -h https://testrail101.testrail.io/ \
              --project "CircleCI Integration" \
              -u testrailuser1@gurock.io \
              -p Test1234 \
@@ -46,6 +46,6 @@ workflows:
   sample: # This is the name of the workflow, feel free to change it to better match your workflow.
     jobs:
       - build-and-test
-      - install-trcli-and-parse-results:
+      - install-trcli-and-upload-results:
           requires:
             - build-and-test
